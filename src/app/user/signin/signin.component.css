@@ -1,0 +1,67 @@
+
+.signin-container {
+    background-color: transparent;
+    height: 100vh;
+}
+
+.signin-container:hover .background-img {
+    transition: .5s; 
+    filter: blur(0);
+}
+
+.signin-container form:hover .background-img {
+    transition: 1s;
+    transform: translate(-10px, -10px) scale(1.01);
+    filter: blur(3px) grayscale(1) drop-shadow(5px 5px 0px orangered) !important; 
+}
+
+.signin-container form {
+    display: flex;
+    flex-flow: column nowrap;
+    max-width: 25em;
+    margin: 0 auto;
+    background-color: rgb(85, 85, 85);
+    padding: 1em;
+    color: white;
+    box-shadow: 2px 3px 3px 0 rgba(255, 68, 0, 0.46);
+    min-height: 30%;
+    z-index: 1;
+}
+
+.signin-container form div {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    width: 100%;
+    margin: .25em 0;
+}
+
+button {
+    width: 10em;
+    margin: 1em auto 0 0;
+}
+
+.form-warning {
+    color: lightgrey;
+    font-size: .8em;
+}
+
+.test-tip {
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+    color: darkslategray;
+    font-size: 1.1em;
+    font-weight: bolder;
+}
+
+.signin-container a {
+    max-width: 8em;
+    margin-top: auto;
+    margin-left: auto;
+    background-color: black;
+}
+
+.signin-container a:hover {
+    color: orangered;
+}

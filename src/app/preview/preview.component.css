@@ -1,0 +1,16 @@
+.turn-back {
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  padding: 2em 4em;
+  background-color: orangered;
+  font-weight: bolder;
+  color: white;
+  z-index: 999;
+  text-decoration: none;
+  box-shadow: 0 0 1em .5em #999;
+}
+
+.preview {
+  border: 1px solid darkslategrey;
+}

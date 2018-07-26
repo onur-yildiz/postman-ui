@@ -1,0 +1,71 @@
+.header-container {
+  transition: .5s;
+  height: 2.5em;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  background-color: rgb(63, 63, 63);
+}
+
+.header-container div:not(:first-child):not(:last-child) {
+  margin: 0 1em;
+}
+
+.header-container > div {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  color: whitesmoke;
+  border-bottom: .2em solid transparent;
+}
+
+div.sides button {
+  margin: .25em 0;
+  padding: 0 .5em;
+  border-radius: 5px;
+}
+
+div.sides button:not(:focus):not(.no-focus):hover {
+  transition: .5s;
+  color: white;
+  background-color: rgb(79, 79, 79);
+}
+
+div.middle button:hover {
+  transition: .5s;
+  background-color: rgb(79, 79, 79);
+  color: white;
+}
+
+div.sides button:not(.no-focus):focus {
+  transition: .5s;
+  background-color: rgb(106, 106, 106);
+  color: white;
+}
+
+.no-focus:active {
+  color: orangered;
+}
+
+.active {
+  transition: .5s;
+  color: white;
+  border-bottom-color: orangered;
+}
+
+.signbox {
+  position: fixed;
+  right: 0;
+  border-top: 1px solid orangered;
+  color: white;
+  padding: 1em .5em;
+  background-color: rgb(85, 85, 85);
+  margin-left: auto;
+  box-shadow: -2px 2px 5px 0 #aae;
+  z-index: 5;
+}

@@ -1,0 +1,9 @@
+<div class="browser-container">
+  <div *ngFor="let requestTab of requestTabs; let i = index">
+    <div *ngIf="!indicesOfDeleted.includes(i)" class="tab active">
+      <a (click)="onSwitchTab(requestTab)">{{requestTab.url}}</a>
+      <button *ngIf="requestTabs.length > 1 && (requestTabs.length - indicesOfDeleted.length) > 1" (click)="onDeleteTab(requestTab)">x</button>
+    </div>
+  </div>
+  <button [disabled]="tabAvailable" (click)="onNewTab()" id="new-tab">+</button>
+</div>

@@ -1,0 +1,25 @@
+
+<div>
+  <div class="header-container" id="header-container">
+    <div class="sides">
+      <button [disabled]="!authService.isAuthenticated()" (click)="onNewTab()" class="no-focus" >New</button>
+      <button disabled>Runner</button>
+      <button disabled>Import</button>
+    </div>
+    <div class="middle">
+      <button [disabled]="!authService.isAuthenticated()" routerLinkActive="active" [routerLink]="['/app']">Builder</button>
+      <button disabled>Team Library</button>
+    </div>
+    <div class="sides">
+      <button *ngIf="!authService.isAuthenticated()" class="sign-btn" (click)="selectBox('signup')">Sign Up</button>
+      <button *ngIf="!authService.isAuthenticated()" class="sign-btn" (click)="selectBox('signin')">Sign In</button> <!-- routerLink="/signin" -->
+      <button *ngIf="authService.isAuthenticated()" class="sign-btn no-focus" (click)="onLogout()">Log out</button> <!-- routerLink="/signin" -->
+      <button (click)="selectBox('settings')" class="sign-btn no-focus">Settings</button>
+    </div>
+  </div>
+  <div *ngIf="selection" [ngSwitch]="selection" class="signbox">
+    <app-signin *ngSwitchCase="'signin'"></app-signin>
+    <app-signup *ngSwitchCase="'signup'"></app-signup>
+    <app-settings *ngSwitchCase="'settings'"></app-settings>
+  </div>
+</div>

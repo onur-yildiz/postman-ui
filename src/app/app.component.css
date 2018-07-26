@@ -1,0 +1,20 @@
+
+app-sidebar {
+  float: left;
+  width: 30%;
+}
+
+.outlet {
+  width: 70%;
+  float: right;
+}
+
+@media only screen and (max-width: 800px) {
+  app-sidebar {
+    display: none;
+  }
+
+  .outlet {
+    width: 100%;
+  }
+}

@@ -1,0 +1,23 @@
+
+.act-auth-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.dropdown-container > * {
+  margin-left: 1em;
+  height: 2em;
+}
+
+.dropdown-container span {
+  color: darkslategrey;
+}
+
+.dropdown.selectable button {
+  background-color: lightgrey;
+  width: 10em;
+  text-align: center;
+}
