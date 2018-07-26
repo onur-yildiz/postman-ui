@@ -1,0 +1,27 @@
+<div class="code-container cnt">
+  <div  class="code-menu">
+    <button [disabled]="!pageIsActive" (click)="codePage = 'body'">Body</button>
+    <button [disabled]="!pageIsActive" (click)="codePage = 'cookies'">Cookies</button>
+    <button [disabled]="!pageIsActive" (click)="codePage = 'headers'">Headers</button>
+    <button [disabled]="!pageIsActive" (click)="codePage = 'tests'">Tests</button>
+    <div class="content-right">
+      <div>
+        <span>Status:</span><span class="value">{{requestInfo ? requestInfo.status:''}}</span>
+      </div> 
+      <div>
+        <span>Time:</span><span class="value">{{requestInfo ? (requestInfo.responseTime ? (requestInfo.responseTime + 'ms') : ''):''}}</span>
+      </div> 
+    </div>
+  </div>
+  <div class="code-page" [ngSwitch]="codePage">
+      <app-code-body [requestInfo]="requestInfo" *ngSwitchCase="'body'"></app-code-body>
+      <app-code-cookies *ngSwitchCase="'cookies'"></app-code-cookies>
+      <app-code-headers [requestInfo]="requestInfo" *ngSwitchCase="'headers'"></app-code-headers>
+      <app-code-tests *ngSwitchCase="'tests'"></app-code-tests>
+  </div>
+  <div class="load-anim" id="code-loading">
+      <div class="circle1"></div>
+      <div class="circle2"></div>
+  </div>
+</div>
+

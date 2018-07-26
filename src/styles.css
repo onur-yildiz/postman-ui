@@ -1,0 +1,190 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Karla', sans-serif !important;
+}
+
+body {
+  overflow: hidden;
+  background-color: whitesmoke;
+}
+
+.background-img {
+  transition: 5s;
+  position: fixed;
+  bottom: 2em;
+  left: 0;
+  display: block;
+  min-height: 30vh;
+  width: 100%;
+  filter: blur(3px) grayscale(1) drop-shadow(5px 5px 5px orangered);
+  z-index: -1;
+}
+
+.header-gradient {
+  transition: 1s;
+  transition-timing-function: cubic-bezier(0.23, 1, 0.320, 1);
+  box-shadow: 0 3px 50px 0 orangered;
+}
+
+.body-bg-gradient-1 {
+  background: linear-gradient(grey 0%, white 100%);
+}
+
+ul, li {
+  list-style-type: none;
+}
+
+button, a {
+  padding: .25em .5em;
+  outline: none;
+  background-color: rgb(234, 234, 225);
+}
+
+input {
+  outline: none;
+  background-color: rgb(230, 230, 230);
+  border: 1px solid lightgrey;
+  padding-left: 1em;
+}
+
+input:focus {
+  background-color: white;
+  box-shadow: 0 0 3px 0px white;
+}
+
+input:checked {
+  background-color: white;
+  border-color: white;
+  box-shadow: 0 0 8px 0px white;
+}
+
+textarea {
+  background-color: whitesmoke;
+  outline: none;
+}
+
+textarea:focus {
+  background-color: white;
+}
+
+button {
+  cursor: pointer;
+  border-width: 1px;
+  border-color: whitesmoke;
+  text-align: center;
+  color: darkslategrey;
+  padding: .25em .5em;
+  background-color: rgb(230, 230, 230);
+}
+
+button:disabled {
+  cursor: no-drop;
+  opacity: .5;
+}
+
+button:hover {
+  transition: .2s;
+  background-color: lightgrey;
+  color: black;
+  box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+button:focus {
+  box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+/*-------------------------------------- DROPDOWN */
+
+.dropdown-container button {
+  color: whitesmoke;
+  border: 1px solid lightslategrey;
+  border-right: none;
+  background-color: rgb(51, 100, 191);
+}
+
+.dropdown-container button:active {
+  background-color: rgba(51, 100, 191, .8);
+}
+
+.dropdown-container .drop-btn:not(.grey) {
+  border-left: 1px solid whitesmoke !important;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown button {
+  color: whitesmoke;
+  border: 1px solid lightslategrey;
+}
+
+.dropdown button.grey {
+  color: darkslategray;
+  background-color: rgb(234, 234, 225);
+}
+
+.dropdown.selectable > button {
+  width: 100%;
+  text-align: center;
+}
+
+.dropdown-container button:not(:active):hover, .dropdown:not(.selectable) button:not(:active):hover {
+  transition: .2s;
+  background-color: rgba(51, 100, 191, .9);
+}
+
+.drop-btn {
+  height: 100%;
+  min-width: 2em;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  border: 1px solid lightgrey;
+  padding: .25em 0;
+  display: none;
+  position: absolute;
+  background-color: white;
+  box-shadow: 1px 3px 6px 0 rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  
+}
+
+.dropdown-content a {
+  background-color: white;
+  color: darkslategray;
+  padding: .25em .5em;
+  display: block;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.dropdown-content a:hover {
+  background-color: rgb(237, 234, 234);
+}
+
+.show {
+  display: block;
+}
+/*-------------------------------------- END OF DROPDOWN */
+
+::-webkit-scrollbar {
+  width: .5em;
+  height: .5em;
+}
+
+::-webkit-scrollbar-track {
+  background: lightgrey;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #aaa; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #888; 
+}

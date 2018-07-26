@@ -1,0 +1,30 @@
+<div class="code-body-container">
+  <button (click)="mode = 'pretty'">Pretty</button>
+  <button (click)="mode = 'raw'">Raw</button>
+  <button class="broken" (click)="onPreview()">Preview<span class="tip">BROKEN</span></button>
+  <div class="dropdown selectable">
+    <button id="save-as" class="drop-btn grey">HTML</button>
+    <div class="dropdown-content">
+      <a (click)="downloadFileType = 'application/json'">JSON</a>
+      <a (click)="downloadFileType = 'plain/text'">TEXT</a>
+      <a (click)="downloadFileType = 'application/xml'">XML</a>
+      <a (click)="downloadFileType = 'plain/html'">HTML</a>
+    </div>
+  </div>
+  <div class="content-right">
+    <button class="no-focus" (click)="onCopy()">COPY</button>
+    <button class="no-focus" (click)="toggleSearch()">SEARCH {{arrow}}</button>
+    <form id="code-search-box" (ngSubmit)="onSearch(search)" #search="ngForm">
+      <input 
+      type="text" name="search" 
+      ngModel  
+      required>
+    </form>
+  </div>
+</div>
+
+<div class="code-area">
+  <pre *ngIf="mode === 'pretty'" id="pretty" class="code-content">{{requestInfo.contents}}</pre> <!-- pretty -->
+  <div *ngIf="mode === 'raw'" id="raw" class="code-content">{{requestInfo.contents}}</div> <!-- raw -->
+  <!-- <div id="page-preview" #pagePreview class="code-content"></div> preview -->
+</div>

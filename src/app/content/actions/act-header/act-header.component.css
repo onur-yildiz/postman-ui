@@ -1,0 +1,17 @@
+.header-container {
+  display: flex;
+  flex-flow: row wrap;
+  color: darkslategray;
+}
+
+.header-container div {
+  width: 33%;
+  height: 3em;
+  background-color: lightgrey;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.header-container div input {
+  height: 2em;
+}

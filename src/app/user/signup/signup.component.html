@@ -1,0 +1,49 @@
+
+<div class="signup-container">
+  <form (ngSubmit)="onSignup(f)" #f="ngForm" id="signup-form">
+      <img src="https://www.getpostman.com/img/v2/media-kit/Logo/PNG/pm-logo-horiz.png" class="background-img" alt="">
+    <div>
+      <label for="name">Name</label>
+      <input type="name" id="name" name="name" spellcheck="false" autofocus ngModel required #name="ngModel">
+      <p class="form-warning" *ngIf="!name.valid && name.touched">Please enter your name.</p>
+    </div>
+    <div>
+      <label for="email">Mail</label>
+      <input 
+      type="email" 
+      id="email" 
+      name="email"
+      spellcheck="false"
+      ngModel
+      required
+      email
+      #email="ngModel">
+      <p class="form-warning" *ngIf="!email.valid && email.touched">Please enter a valid e-mail address.</p>
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        ngModel
+        required
+        #password="ngModel">
+        <p class="form-warning" *ngIf="!password.valid && password.touched">Please enter your password.</p>
+    </div>
+    <div>
+      <label for="passwordVerify">Verify password</label>
+      <input
+        type="password"
+        id="password-verify"
+        name="passwordVerify"
+        ngModel
+        required
+        #password="ngModel">
+        <p class="form-warning" *ngIf="f.value.passwordVerify !== f.value.password && password.touched">Passwords does not match</p>
+    </div>
+    <button type="submit" [disabled]="!f.valid || f.value.passwordVerify !== f.value.password">Sign Up</button>
+    <a class="form-warning" [routerLink]="['/signin']">or sign in.</a>
+  </form>
+</div>
+

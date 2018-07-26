@@ -1,0 +1,93 @@
+.code-container {
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  margin-top: 1em;
+  border: 1px solid lightgrey;
+  box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.2);
+  background-color: white;
+}
+
+.code-container > div:not(.load-anim) {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.code-menu {
+  border-bottom: 1px solid lightgray;
+  min-height: 2em;
+}
+
+.content-right {
+  color: darkslategrey;
+  display: flex;
+  flex-flow: row nowrap;
+  margin-left: auto;
+  align-self: center;
+}
+
+.content-right > div {
+  margin-left: .5em;
+}
+
+.value {
+  color: orangered;
+}
+
+.code-menu button {
+  background-color: transparent;
+  border: none;
+  border-bottom: .2em solid transparent;
+}
+
+.code-menu button.active {
+  border-color: orangered;
+}
+
+.code-page {
+  height: 22em;
+  padding: 0 .5em;
+}
+
+.code-page > * {
+  width: calc(100% - 1em);
+  height: 15em;
+}
+
+.load-anim {
+  width: 5em !important;
+  height: 5em !important;
+  background-color: rgba(220, 220, 220, .5);
+
+  display: none;
+  border-radius: 50%;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  align-self: center;
+  margin: 0 auto;
+}
+
+.circle1, .circle2 {
+  margin: 1em;
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0.6;
+  position: absolute;
+  
+  animation: loading 2.0s infinite ease-in-out;
+}
+
+.circle2 {
+  animation-delay: -1.0s;
+}
+
+@keyframes loading {
+  0%, 100% {transform: scale(0.0); } 
+  50% {transform: scale(1.0); }
+}

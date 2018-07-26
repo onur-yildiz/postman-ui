@@ -1,0 +1,16 @@
+.content-border {
+  width: 100%;
+  margin-left: auto;
+}
+
+.content-container {
+  padding: 1em;
+  width: calc(100% - 2em);
+}
+
+@media only screen and (max-width: 800px) {
+  .content-border {
+    width: calc(100% - 1em);
+    margin: auto;
+  }
+}

@@ -1,0 +1,50 @@
+<div class="actions-container cnt">
+  <div class="bar">
+    <div class="request-bar">
+      <div class="dropdown selectable">
+        <button class="drop-btn grey">GET</button>
+        <div class="dropdown-content">
+          <a>GET</a>
+          <a>POST</a>
+          <a>PUT</a>
+          <a>PATCH</a>
+        </div>
+      </div>
+      <input (keydown.enter)="onRequest()" spellcheck="false" [(ngModel)]="requestAddress" class="cnt2" type="text">
+      <button (click)="actPage = 'header'">Params</button>
+    </div>
+    <div class="dropdown-container">
+      <button>Send</button>
+      <div class="dropdown">
+        <button class="drop-btn down-arr">&#9660;</button>
+        <div class="dropdown-content">
+          <a>Send and Download</a>
+        </div>
+      </div>
+    </div>
+    <div class="dropdown-container">
+      <button (click)="onSave()" >Save</button>
+      <div class="dropdown">
+        <button class="drop-btn down-arr">&#9660;</button>
+        <div class="dropdown-content">
+          <a (click)="onSaveAs()">Save As...</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="actions-menu">
+    <button (click)="actPage = 'auth'">Authorization</button>
+    <button (click)="actPage = 'header'">Headers</button>
+    <button disabled (click)="actPage = 'body'">Body</button>
+    <button (click)="actPage = 'prereq'">Pre-request Script</button>
+    <button (click)="actPage = 'test'">Tests</button>
+    <button id="code-generator">Generate Code</button>
+  </div>
+  <div class="act-page" [ngSwitch]="actPage">
+    <app-act-authorization *ngSwitchCase="'auth'" ></app-act-authorization>
+    <app-act-body *ngSwitchCase="'body'"></app-act-body>
+    <app-act-header *ngSwitchCase="'header'"></app-act-header>
+    <app-act-pre-request-script *ngSwitchCase="'prereq'"></app-act-pre-request-script>
+    <app-act-tests *ngSwitchCase="'test'"></app-act-tests>
+  </div>
+</div>

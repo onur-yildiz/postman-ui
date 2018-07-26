@@ -1,0 +1,129 @@
+.sidebar-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  box-shadow: 3px 0px 5px 0 rgba(0, 0, 0, 0.2);
+  background-color: white;
+}
+
+.sidebar-container > div:not(.content) {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-top: .25em;
+}
+
+.tabs {
+  border-bottom: 1px solid lightgrey;
+}
+
+.tabs > button {
+  width: 50%;
+  padding: .75em 1em;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+}
+
+.tabs > button:hover {
+  border-color: darkorange;
+}
+
+.tabs > button.active-tab {
+  transition: .2s;
+  border-color: orangered;
+}
+
+.sidebar-container > div > input {
+  width: 80%;
+  margin: .5em auto;
+  border-radius: 1em;
+  height: 1.5em;
+}
+
+.content {
+  position: relative;
+  width: 100%;
+  display: block;
+  height: 80%;
+  overflow-y: auto;
+}
+
+.content-item-options {
+  display: none;
+}
+
+.content-item:hover .content-item-options {
+  margin-left: auto;
+  display: flex;
+  align-content: center;
+  background-color: rgb(225, 216, 216);
+  z-index: 2;
+}
+
+.content-item-options button {
+  align-self: center;
+  background-color: transparent;
+  border: none;
+  color: lightslategrey;
+  font-weight: bolder;
+  padding: 0 .5em;
+}
+
+.content-item {
+  background-color: rgb(225, 216, 216);
+  margin-top: .5em;
+  padding: .5em 0;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  overflow:-y auto;
+  height: 3em;
+}
+
+.content-item p {
+  max-height: 100%;
+  max-width: 60%;
+  overflow-y: auto;
+  overflow-wrap: break-word;
+  align-self: center;
+  margin-left: .5em;
+  color: darkslategrey;
+  cursor: pointer;
+}
+
+.content-item span {
+  max-width: 15%;
+  max-height: 100%;
+  overflow-y: hidden;
+  overflow-wrap: break-word;
+  align-self: center;
+  color: gray;
+  line-height: 100%
+}
+
+.content-item:hover p {
+  color: rgb(46, 46, 46);
+}
+
+.content-item button:active {
+  color: black;
+}
+
+.action-img {
+  padding: 0 1em;
+  height: 100%;
+  align-self: center;
+  font-size: .55em;
+}
+
+.action-img.get {
+  color: green;
+}
+
+.action-img.post {
+  color: orangered;
+}

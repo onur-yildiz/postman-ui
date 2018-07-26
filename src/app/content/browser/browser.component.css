@@ -1,0 +1,66 @@
+.browser-container {
+  width: 100%;
+  padding: 1em 1em 0 1em;
+  display: flex;
+  flex-flow: row nowrap;
+  border-bottom: 1px solid lightgrey;
+}
+
+.browser-container > div {
+  margin-left: .2em;
+}
+
+.browser-container > button {
+  margin-right: auto;
+}
+
+.tab {
+  position: relative;
+  cursor: pointer;
+  max-height: 1.5em;
+  padding: .25em 1em .25em 0;
+  border: 2px solid lightgrey;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom: none;
+
+  background-color: rgb(233, 233, 233);
+  max-width: 8em;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5em;
+  color: darkslategray;
+}
+
+.tab a {
+  padding-right: .5em;
+  background: transparent;
+}
+
+.tab button {
+  position: absolute;
+  cursor: pointer;
+  top: 50%;
+  right: 1px;
+  transform: translateY(-50%);
+  border-radius: 100%;
+  border: none;
+  color: darkslategrey;
+  background: transparent;
+  box-shadow: none;
+}
+
+.tab button:hover {
+  color: black;
+  background: transparent;
+  box-shadow: none;
+}
+
+.tab.active {
+  background-color: white;
+}
+
+.tab.highlight {
+  background-color: rgba(255, 68, 0, 0.219);
+}

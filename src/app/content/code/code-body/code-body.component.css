@@ -1,0 +1,101 @@
+.code-body-container {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  margin-top: .5em;
+}
+
+button {
+  padding: .5em 1em;
+  white-space: nowrap;
+  border: none;
+  background-color: lightgrey;
+}
+
+.dropdown .drop-btn {
+  width: 6em;
+  text-align: center;
+}
+
+.content-right {
+  color: darkslategrey;
+  display: flex;
+  flex-flow: row nowrap;
+  margin-left: auto;
+  align-self: center;
+
+  position: relative;
+}
+
+.active-btn {
+  transition: .2s;
+  color: whitesmoke;
+  background-color: lightslategray;
+}
+
+.no-focus:active {
+  color: whitesmoke;
+  background-color: lightslategray;
+}
+
+#code-search-box {
+  transition: 1s;
+  opacity: 0;
+  position: absolute;
+  top: 110%;
+  left: 100%;
+}
+
+#code-search-box input {
+  width: 15em;
+  height: 2em;
+  z-index: 2;
+  border-top-left-radius: 1em;
+  border-bottom-left-radius: 1em;
+}
+
+#code-search-box.active-search {
+  transition: 1s;
+  opacity: 1;
+  top: 110%;
+  left: 0;
+}
+
+.code-area {
+  height: 17em;
+  margin: 2em 0;
+  background-color: whitesmoke;
+  border: 1px solid lightslategray;
+  overflow: auto;
+  overflow-wrap: break-word;
+  border-left-width: 1em;
+}
+
+.code-area > *:not(iframe) {
+  padding-left: .5em;
+}
+
+.broken {
+  position: relative;
+}
+
+.tip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, 0);
+  color: white;
+  padding: .25em .5em;
+  border-radius: 1em;
+}
+
+.broken:hover .tip {
+  transition: .5s;
+  transition-delay: .3s;
+  visibility: visible;
+  animation-delay: 1s;
+  opacity: 1;
+  background-color: darkslategrey;
+}

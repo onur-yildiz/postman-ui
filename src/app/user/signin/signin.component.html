@@ -1,0 +1,38 @@
+
+<div class="signin-container">
+  <form (ngSubmit)="onSignin(f)" #f="ngForm" id="signin-form">
+    <img src="https://www.getpostman.com/img/v2/media-kit/Logo/PNG/pm-logo-horiz.png" class="background-img" alt="">
+    <div class="form-group">
+      <label for="email">Mail</label>
+      <input
+      type="email" 
+      id="email" name="email"
+      spellcheck="false" 
+      autofocus
+      ngModel 
+      email 
+      required
+      [(ngModel)]="defaultEmail"
+      #email="ngModel">
+      <p class="form-warning" *ngIf="!email.valid && email.touched">Please enter a valid e-mail address.</p>
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input
+      type="password"
+      id="password"
+      name="password"
+      ngModel
+      required
+      [(ngModel)]="defaultPassword"
+        #password="ngModel">
+        <p class="form-warning" *ngIf="!password.valid && password.touched">Please enter your password.</p>
+    </div>
+    <button type="submit" [disabled]="!f.valid">Sign In</button>
+    <a class="form-warning" [routerLink]="['/signup']">or sign up.</a>
+  </form>
+  <p class="test-tip">test@test.com : test123</p>
+</div>
+
+
+  
