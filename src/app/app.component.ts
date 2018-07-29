@@ -16,8 +16,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     firebase.initializeApp({
-      ***REMOVED***,
-      authDomain: '***REMOVED***',
+      apiKey: '***REMOVED***',
+      authDomain: '***REMOVED***'
     });
     this.checkAuth();
     this.router.events.subscribe((routerEvent: RouterEvent) => {
@@ -36,5 +36,4 @@ export class AppComponent implements OnInit {
       }
     }, 10000);
   }
-
 }
