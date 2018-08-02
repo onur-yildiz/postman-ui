@@ -46,7 +46,7 @@ export class HttpService {
           .subscribe(
             response => {
               if (response.body) {
-                const length = response.body.length;
+                const length = JSON.stringify(response.body).length;
               }
               const responseTime = new Date().getTime() - startTime;
               const newReq = new Req(response.url, request.method);
@@ -54,7 +54,7 @@ export class HttpService {
                 response.status,
                 responseTime,
                 length / 1000,
-                response.body,
+                JSON.stringify(response.body),
                 response.url,
                 null,
                 response.headers
@@ -72,7 +72,7 @@ export class HttpService {
           .subscribe(
             response => {
               if (response.body) {
-                const length = response.body.length;
+                const length = JSON.stringify(response.body).length;
               }
               const responseTime = new Date().getTime() - startTime;
               const newReq = new Req(response.url, request.method);
@@ -80,7 +80,7 @@ export class HttpService {
                 response.status,
                 responseTime,
                 length / 1000,
-                response.body,
+                JSON.stringify(response.body),
                 response.url,
                 null,
                 response.headers
@@ -98,7 +98,7 @@ export class HttpService {
           .subscribe(
             response => {
               if (response.body) {
-                const length = response.body.length;
+                const length = JSON.stringify(response.body).length;
               }
               const responseTime = new Date().getTime() - startTime;
               const newReq = new Req(response.url, request.method);
@@ -106,7 +106,7 @@ export class HttpService {
                 response.status,
                 responseTime,
                 length / 1000,
-                response.body,
+                JSON.stringify(response.body),
                 response.url,
                 null,
                 response.headers
@@ -124,7 +124,7 @@ export class HttpService {
           .subscribe(
             response => {
               if (response.body) {
-                const length = response.body.length;
+                const length = JSON.stringify(response.body).length;
               }
               const responseTime = new Date().getTime() - startTime;
               const newReq = new Req(response.url, request.method);
@@ -132,7 +132,7 @@ export class HttpService {
                 response.status,
                 responseTime,
                 length / 1000,
-                response.body,
+                JSON.stringify(response.body),
                 response.url,
                 null,
                 response.headers
