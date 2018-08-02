@@ -8,9 +8,9 @@
   </div>
   <div *ngIf="!tabSwitch" class="content">
     <div *ngFor="let request of requests.reverse() | filter:filterQuery" class="content-item">
-      <div class="action-img get">GET</div>
+      <div class="action-img get">{{request.method}}</div>
       <span>{{request.date | date}}</span>
-      <p (click)="onSelectRequest(request)" >{{request.url}}</p>
+      <p (click)="onSelectRequest(request)">{{request.url}}</p>
       <div class="content-item-options">
         <button (click)="onAddToCollection(request)">+</button>
         <button (click)="onDeleteFromHistory(request)">X</button>
@@ -19,9 +19,9 @@
   </div>
   <div *ngIf="tabSwitch" class="content">
     <div *ngFor="let request of requestCollection.reverse() | filter:filterQuery" class="content-item">
-      <div class="action-img get">GET</div>
+      <div class="action-img get">{{request.method}}</div>
       <span>{{request.date | date}}</span>
-      <p (click)="onSelectRequest(request)" >{{request.url}}</p>
+      <p (click)="onSelectRequest(request)">{{request.url}}</p>
       <div class="content-item-options">
         <button (click)="onDeleteFromCollection(request)">X</button>
       </div>
