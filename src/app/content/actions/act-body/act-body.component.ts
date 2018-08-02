@@ -1,4 +1,10 @@
-import { Component, OnInit, AfterViewInit, AfterViewChecked } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  AfterViewChecked
+} from '@angular/core';
+import { RequestService } from '../../../shared/request.service';
 
 @Component({
   selector: 'app-act-body',
@@ -6,10 +12,13 @@ import { Component, OnInit, AfterViewInit, AfterViewChecked } from '@angular/cor
   styleUrls: ['./act-body.component.css']
 })
 export class ActBodyComponent implements OnInit {
+  requestBody: string;
 
-  constructor() { }
+  constructor(private requestService: RequestService) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  updateBody() {
+    this.requestService.requestBodyUpdated.next(this.requestBody);
   }
-
 }

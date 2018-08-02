@@ -1,5 +1,4 @@
 import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
-// import * as $ from 'jquery';
 declare var jQuery: any;
 
 @Component({
@@ -8,11 +7,9 @@ declare var jQuery: any;
   styleUrls: ['./act-authorization.component.css']
 })
 export class ActAuthorizationComponent implements OnInit, AfterViewInit {
+  constructor(private _elRef: ElementRef) {}
 
-  constructor(private _elRef: ElementRef) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngAfterViewInit() {
     this.jQuery();
@@ -22,13 +19,20 @@ export class ActAuthorizationComponent implements OnInit, AfterViewInit {
     const component = jQuery(this._elRef.nativeElement);
     component.find('.drop-btn').click(function() {
       const currentDrop = $(this).next();
-       $(document).find('.dropdown-content').not(currentDrop).slideUp('fast');
-       currentDrop.slideDown('fast');
+      $(document)
+        .find('.dropdown-content')
+        .not(currentDrop)
+        .slideUp('fast');
+      currentDrop.slideDown('fast');
     });
 
-    component.find('.dropdown.selectable .dropdown-content a').click(function() {
-      $(this).closest('.dropdown-content').prev().html($(this).html()); // put selected elements value to the dropdown title
-    });
+    component
+      .find('.dropdown.selectable .dropdown-content a')
+      .click(function() {
+        $(this)
+          .closest('.dropdown-content')
+          .prev()
+          .html($(this).html()); // put selected elements value to the dropdown title
+      });
   }
-
 }

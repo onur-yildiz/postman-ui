@@ -13,14 +13,19 @@ import { HttpService } from '../shared/http.service';
 export class HeaderComponent implements OnInit {
   selection = '';
 
-  constructor(private router: Router,
-              public authService: AuthService,
-              private requestService: RequestService,
-              private httpService: HttpService) { }
+  constructor(
+    private router: Router,
+    public authService: AuthService,
+    private requestService: RequestService,
+    private httpService: HttpService
+  ) {}
 
   ngOnInit() {
-    $(document).click( e => {
-      if ($(e.target).closest('.signbox').length !== 0 || $(e.target).closest('.sign-btn').length !== 0) {
+    $(document).click(e => {
+      if (
+        $(e.target).closest('.signbox').length !== 0 ||
+        $(e.target).closest('.sign-btn').length !== 0
+      ) {
         return;
       }
       this.selection = '';
@@ -40,23 +45,10 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogout() {
-    const saveData = new Promise<string>(
-      (resolve) => {
-        this.httpService.storeCollection();
-        this.httpService.storeRequests();
-        resolve('All data saved.');
-      }
-    );
-    saveData
-      .then((result) => {
-        console.log(result);
-        this.authService.logout();
-      })
-      .catch((error) => console.log(error));
+    this.authService.logout();
   }
 
   onNewTab() {
     this.requestService.newTabRequested.next();
   }
-
 }

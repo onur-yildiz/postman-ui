@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Req } from './req.model';
 import { Subject } from '../../../node_modules/rxjs';
 import { Info } from './info.model';
+import { ObjectId } from '../../../node_modules/mongodb';
 
 @Injectable({
   providedIn: 'root'
@@ -17,54 +18,38 @@ export class RequestService {
   newTabRequested = new Subject<Req>();
   tabSwitched = new Subject<Info>();
   downloadRequested = new Subject<any>();
+  requestBodyUpdated = new Subject<any>();
 
   constructor() {}
 
-  request(address: string) {
-    document.getElementById('code-loading').style.display = 'flex';
-    $.getJSON('https://allorigins.me/get?url=' + encodeURIComponent(address) + '&callback=?',
-      (data) => {
-        if (!data.status.url) { alert('Bad URL'); return; }
-        const request = new Req(data.status.url);
-        this.reqInfo = new Info(data.contents,
-                        data.status.content_type,
-                        data.status.content_length,
-                        data.status.http_code,
-                        data.status.response_time,
-                        data.status.url,
-                        request.id);
-        this.sessionInfos.push(this.reqInfo);
-        this.requestInfoSet.next(this.reqInfo);
-        this.requests.push(request);
-        this.requestsUpdated.next(this.requests.slice());
-      }
-    );
-  }
-
   switchTab(tabReq: Req, fromHistory?: boolean) {
     if (tabReq.url === 'New Tab') {
-      this.tabSwitched.next(new Info('', '', '', null, null, '', ''));
+      this.tabSwitched.next(new Info(null, null, null, '', '', '', null));
     } else if (fromHistory) {
-      this.tabSwitched.next(new Info('', '', '', null, null, tabReq.url, ''));
+      this.tabSwitched.next(
+        new Info(null, null, null, '', tabReq.url, '', null)
+      );
     } else {
-      const index = this.sessionInfos.findIndex(info => info.id === tabReq.id);
+      const index = this.sessionInfos.findIndex(
+        info => info._id === tabReq._id
+      );
       this.tabSwitched.next(this.sessionInfos[index]);
     }
   }
 
   getRequest(id: string) {
-    const index = this.requests.findIndex(req => req.id === id);
+    const index = this.requests.findIndex(req => req._id === id);
     return this.requests[index];
   }
 
   deleteRequest(id: string) {
-    const index = this.requests.findIndex(req => req.id === id);
+    const index = this.requests.findIndex(req => req._id === id);
     this.requests.splice(index, 1);
     this.requestsUpdated.next(this.requests.slice());
   }
 
   deleteCollectionRequest(id: string) {
-    const index = this.requestCollection.findIndex(req => req.id === id);
+    const index = this.requestCollection.findIndex(req => req._id === id);
     this.requestCollection.splice(index, 1);
     this.requestCollectionUpdated.next(this.requestCollection.slice());
   }
@@ -86,7 +71,34 @@ export class RequestService {
     this.requestCollectionUpdated.next(this.requestCollection.slice());
   }
 
-  // por HTTP SERVICIO
+  addRequest(response: any) {
+    if (!response) {
+      return this.requestInfoSet.next(
+        new Info(null, null, null, null, null, null, null)
+      );
+    }
+    if (response.req && response.info) {
+      const request: Req = response.req;
+      const requestInfo: Info = response.info;
+      requestInfo._id = request._id;
+      try {
+        this.sessionInfos.push(requestInfo);
+        this.requestInfoSet.next(requestInfo);
+        this.requests.push(request);
+        this.requestsUpdated.next(this.requests.slice());
+      } catch (error) {
+        console.log('ADDREQUEST', error);
+      }
+    }
+  }
+
+  addExternalRequest(request: Req, info: Info) {
+    this.sessionInfos.push(info);
+    this.requestInfoSet.next(info);
+    this.requests.push(request);
+    this.requestsUpdated.next(this.requests.slice());
+  }
+
   setRequests(requests: Req[]) {
     this.requests = requests;
     this.requestsUpdated.next(this.requests.slice());
@@ -96,7 +108,4 @@ export class RequestService {
     this.requestCollection = requests;
     this.requestCollectionUpdated.next(this.requestCollection.slice());
   }
-  // ---
-
 }
-// OBTENER COLECCIONAS DESDE HTTP SERVICIO

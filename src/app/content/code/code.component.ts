@@ -1,4 +1,11 @@
-import { Component, OnInit, AfterViewInit, ElementRef, HostListener, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ElementRef,
+  HostListener,
+  OnDestroy
+} from '@angular/core';
 import { Info } from '../../shared/info.model';
 import { RequestService } from '../../shared/request.service';
 import { Subscription } from '../../../../node_modules/rxjs';
@@ -19,29 +26,32 @@ export class CodeComponent implements OnInit, AfterViewInit, OnDestroy {
   requestSubs: Subscription;
   tabSubs: Subscription;
 
-  constructor(private _elRef: ElementRef,
-              private requestService: RequestService) {}
+  constructor(
+    private _elRef: ElementRef,
+    private requestService: RequestService
+  ) {}
 
   ngOnInit() {
-    this.requestSubs = this.requestService.requestInfoSet
-      .subscribe(
-        newRequestInfo => {
-          this.requestInfo = newRequestInfo;
-          this.codePage = 'body';
-          document.getElementById('code-loading').style.display = 'none';
-          this.pageIsActive = true;
-        }
-      );
-    this.tabSubs = this.requestService.tabSwitched
-      .subscribe(
-        tabInfo => this.requestInfo = tabInfo
-      );
+    this.requestSubs = this.requestService.requestInfoSet.subscribe(
+      newRequestInfo => {
+        this.requestInfo = newRequestInfo;
+        this.codePage = 'body';
+        document.getElementById('code-loading').style.display = 'none';
+        this.pageIsActive = true;
+      }
+    );
+    this.tabSubs = this.requestService.tabSwitched.subscribe(tabInfo => {
+      this.requestInfo = tabInfo;
+    });
   }
 
   ngAfterViewInit() {
     const component = jQuery(this._elRef.nativeElement);
     component.find('.code-menu button').click(function() {
-      component.find('.code-menu button').not(this).removeClass('active');
+      component
+        .find('.code-menu button')
+        .not(this)
+        .removeClass('active');
       $(this).addClass('active');
     });
   }
@@ -50,5 +60,4 @@ export class CodeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.requestSubs.unsubscribe();
     this.tabSubs.unsubscribe();
   }
-
 }

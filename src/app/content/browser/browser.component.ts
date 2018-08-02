@@ -1,4 +1,11 @@
-import { Component, OnInit, ElementRef, AfterViewInit, AfterViewChecked, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  AfterViewInit,
+  AfterViewChecked,
+  OnDestroy
+} from '@angular/core';
 import { RequestService } from '../../shared/request.service';
 import { Req } from '../../shared/req.model';
 import { Subscription } from '../../../../node_modules/rxjs';
@@ -19,34 +26,31 @@ export class BrowserComponent implements OnInit, AfterViewChecked, OnDestroy {
   requestSubs: Subscription;
   tabSubs: Subscription;
 
-  constructor(private requestService: RequestService,
-              private _elRef: ElementRef) { }
+  constructor(
+    private requestService: RequestService,
+    private _elRef: ElementRef
+  ) {}
 
   ngOnInit() {
-    this.requestSubs = this.requestService.requestsUpdated
-      .subscribe(
-        newRequests => {
-          if (!this.initialized) {
-            this.startIndex = newRequests.length;
-            this.initialized = true;
-          } else {
-            this.requestTabs = newRequests.slice(this.startIndex);
-            this.tabAvailable = false;
-            this.jQueryNewTab();
-          }
+    this.requestSubs = this.requestService.requestsUpdated.subscribe(
+      newRequests => {
+        if (!this.initialized) {
+          this.startIndex = newRequests.length;
+          this.initialized = true;
+        } else {
+          this.requestTabs = newRequests.slice(this.startIndex);
+          this.tabAvailable = false;
+          this.jQueryNewTab();
         }
-      );
-    this.tabSubs = this.requestService.newTabRequested
-      .subscribe(
-        () => {
-          if (!this.tabAvailable) {
-            this.onNewTab();
-          } else {
-            this.jQueryTabHighlight();
-          }
-        }
-      );
-
+      }
+    );
+    this.tabSubs = this.requestService.newTabRequested.subscribe(() => {
+      if (!this.tabAvailable) {
+        this.onNewTab();
+      } else {
+        this.jQueryTabHighlight();
+      }
+    });
   }
 
   ngAfterViewChecked() {
@@ -58,7 +62,7 @@ export class BrowserComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   onNewTab() {
-    this.requestTabs.push(new Req('New Tab'));
+    this.requestTabs.push(new Req('New Tab', ''));
     this.tabAvailable = true;
     this.jQueryNewTab();
   }
@@ -74,7 +78,10 @@ export class BrowserComponent implements OnInit, AfterViewChecked, OnDestroy {
   jQuery() {
     const component = jQuery(this._elRef.nativeElement);
     component.find('.tab').click(function() {
-      component.find('.tab').not(this).removeClass('active');
+      component
+        .find('.tab')
+        .not(this)
+        .removeClass('active');
       $(this).addClass('active');
     });
   }
@@ -83,14 +90,20 @@ export class BrowserComponent implements OnInit, AfterViewChecked, OnDestroy {
     const component = jQuery(this._elRef.nativeElement);
     component.find('.tab').removeClass('active');
     setTimeout(() => {
-      component.find('.tab').last().addClass('active');
+      component
+        .find('.tab')
+        .last()
+        .addClass('active');
     }, 50);
   }
 
   jQueryTabHighlight() {
     const component = jQuery(this._elRef.nativeElement);
     const interval = setInterval(() => {
-      component.find('.tab').last().toggleClass('highlight');
+      component
+        .find('.tab')
+        .last()
+        .toggleClass('highlight');
     }, 150);
     setTimeout(() => {
       clearInterval(interval);
@@ -101,5 +114,4 @@ export class BrowserComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.requestSubs.unsubscribe();
     this.tabSubs.unsubscribe();
   }
-
 }

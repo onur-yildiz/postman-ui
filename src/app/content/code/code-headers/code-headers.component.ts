@@ -8,10 +8,13 @@ import { Info } from '../../../shared/info.model';
 })
 export class CodeHeadersComponent implements OnInit {
   @Input() requestInfo: Info;
+  headers: {};
+  keys: any[];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
+    this.headers = this.requestInfo.headers;
+    this.keys = Object.keys(this.requestInfo.headers);
   }
-
 }
