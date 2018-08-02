@@ -1,58 +1,87 @@
-import * as firebase from 'firebase';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Observer } from '../../../node_modules/rxjs';
+import {
+  HttpClient,
+  HttpHeaders
+} from '../../../node_modules/@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   token: string;
+  currentUser = '';
+  serverURI = 'https://glacial-springs-87925.herokuapp.com';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private httpClient: HttpClient) {}
 
   signupUser(email: string, password: string) {
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(
-        () => {
-          this.signinUser(email, password);
+    this.httpClient
+      .post<any>(
+        `${this.serverURI}/users`,
+        {
+          email,
+          password
+        },
+        {
+          observe: 'response'
         }
       )
-      .catch(error => alert(error));
+      .subscribe(
+        response => {
+          this.token = response.headers.get('x-auth');
+          this.currentUser = email;
+          this.router.navigate(['/']);
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 
-  signinUser(email: string, password: string) {
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(
-        () => {
-          this.getToken();
+  signinUser(email: string, password: string, callback) {
+    this.httpClient
+      .post<any>(
+        `${this.serverURI}/users/login`,
+        {
+          email,
+          password
+        },
+        {
+          observe: 'response'
+        }
+      )
+      .subscribe(
+        response => {
+          this.token = response.headers.get('x-auth');
+          this.currentUser = email;
           setTimeout(() => {
             this.router.navigate(['/']);
           }, 100);
+          callback();
         },
-        (rejected) => {
-          alert(rejected);
+        error => {
+          alert(error);
           this.router.navigate(['/']);
-          this.token = null;
         }
-      )
-      .catch(
-        error => alert(error)
       );
   }
 
   logout() {
-    firebase.auth().signOut();
-    this.token = null;
-    this.router.navigate(['/signin']);
+    this.httpClient
+      .post<any>(`${this.serverURI}/users/logout`, null, {
+        headers: { 'x-auth': this.token }
+      })
+      .subscribe(() => {
+        this.token = null;
+        this.router.navigate(['/signin']);
+      });
   }
 
   getToken() {
-    firebase.auth().currentUser.getIdToken()
-      .then(
-        (token: string) => this.token = token
-      );
-    return this.token;
+    if (this.isAuthenticated) {
+      return this.token;
+    }
   }
 
   isAuthenticated() {
@@ -60,6 +89,6 @@ export class AuthService {
   }
 
   getUserEmail() {
-    return firebase.auth().currentUser.email;
+    return this.currentUser;
   }
 }

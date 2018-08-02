@@ -1,5 +1,6 @@
-<div>
-  <div> <!--  *ngFor -->
-    <p><b>Content Type</b> &rarr; {{requestInfo.contentType}}</p>
+<div class="headers-container">
+  <div *ngFor="let key of keys">
+    <p>
+      <b>{{key}}</b> &rarr; {{headers[key]}}</p>
   </div>
 </div>

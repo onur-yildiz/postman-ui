@@ -7,11 +7,11 @@ import { RequestService } from '../shared/request.service';
   styleUrls: ['./preview.component.css']
 })
 export class PreviewComponent implements OnInit {
-
-  constructor(private requestService: RequestService) { }
+  constructor(private requestService: RequestService) {}
 
   ngOnInit() {
-    document.getElementById('preview').innerHTML = this.requestService.reqInfo.contents;
+    document.getElementById(
+      'preview'
+    ).innerHTML = this.requestService.reqInfo.body;
   }
-
 }

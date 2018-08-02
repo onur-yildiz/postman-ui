@@ -1,10 +1,11 @@
 export class Info {
-  constructor(public contents: string,
-              public contentType: string,
-              public contentLength: string,
-              public status: number,
-              public responseTime: number,
-              public url: string,
-              public id: string) {
-  }
+  constructor(
+    public status: Number,
+    public responseTime: Number,
+    public sizeKB: Number,
+    public body: string,
+    public url: string,
+    public _id: string,
+    public headers: any
+  ) {}
 }

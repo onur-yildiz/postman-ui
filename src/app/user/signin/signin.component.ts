@@ -13,9 +13,11 @@ export class SigninComponent implements OnInit, OnDestroy {
   defaultEmail = 'test@test.com';
   defaultPassword = 'test123';
 
-  constructor(private authService: AuthService,
-              private httpService: HttpService,
-              private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private httpService: HttpService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     if (this.router.url.includes('sign')) {
@@ -23,39 +25,37 @@ export class SigninComponent implements OnInit, OnDestroy {
       (<HTMLElement>sidebar[0]).style.width = '100%';
     }
     document.getElementById('signin-form').addEventListener('mouseover', () => {
-      document.getElementById('header-container').classList.add('header-gradient');
+      document
+        .getElementById('header-container')
+        .classList.add('header-gradient');
     });
-    document.getElementById('signin-form').addEventListener('mouseleave', () => {
-      document.getElementById('header-container').classList.remove('header-gradient');
-    });
+    document
+      .getElementById('signin-form')
+      .addEventListener('mouseleave', () => {
+        document
+          .getElementById('header-container')
+          .classList.remove('header-gradient');
+      });
   }
 
   onSignin(form: NgForm) {
     const email = form.value.email;
     const password = form.value.password;
-    new Promise<any>(
-      (resolve) => {
-        {
-          this.authService.signinUser(email, password);
-          this.authService.getToken();
-        }
-        resolve();
-      }
-    )
-    .then(
-      () => {
-        this.httpService.getCollection();
-        this.httpService.getRequests();
-      }
-    );
+    new Promise<any>(resolve => {
+      this.authService.signinUser(email, password, () => {
+        resolve(this.authService.getToken());
+      });
+    }).then(() => {
+      this.httpService.getCollection();
+      this.httpService.getRequests();
+    });
   }
 
   ngOnDestroy() {
     const sidebar = document.getElementsByClassName('outlet');
     (<HTMLElement>sidebar[0]).style.width = '';
-    document.getElementById('header-container').classList.remove('header-gradient');
+    document
+      .getElementById('header-container')
+      .classList.remove('header-gradient');
   }
-
 }
-
-

@@ -1,3 +1,9 @@
 p {
   color: darkslategrey;
 }
+
+.headers-container {
+  overflow-y: auto;
+  word-break: break-all;
+  height: 22em;
+}
