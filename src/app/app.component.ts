@@ -1,5 +1,4 @@
 import { Component, OnInit, AfterViewChecked } from '@angular/core';
-import * as firebase from 'firebase';
 import { AuthService } from './shared/auth.service';
 import { Router, RouterEvent } from '../../node_modules/@angular/router';
 import * as $ from 'jquery';
@@ -15,10 +14,6 @@ export class AppComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit() {
-    firebase.initializeApp({
-      apiKey: 'AIzaSyAnsh9UhQmXZv_cqGvbDwtt6hnYJzJtJ2o',
-      authDomain: 'my-project-1526242688778.firebaseapp.com'
-    });
     this.checkAuth();
     this.router.events.subscribe((routerEvent: RouterEvent) => {
       if (routerEvent.url && routerEvent.url.includes('sign')) {
