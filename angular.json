@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "rest-api": {
+    "angular-postman-ui": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/rest-api",
+            "outputPath": "dist/angular-postman-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -52,18 +52,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "rest-api:build"
+            "browserTarget": "angular-postman-ui:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "rest-api:build:production"
+              "browserTarget": "angular-postman-ui:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "rest-api:build"
+            "browserTarget": "angular-postman-ui:build"
           }
         },
         "test": {
@@ -97,7 +97,7 @@
         }
       }
     },
-    "rest-api-e2e": {
+    "angular-postman-ui-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -105,11 +105,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "rest-api:serve"
+            "devServerTarget": "angular-postman-ui:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "rest-api:serve:production"
+              "devServerTarget": "angular-postman-ui:serve:production"
             }
           }
         },
@@ -125,5 +125,5 @@
       }
     }
   },
-  "defaultProject": "rest-api"
+  "defaultProject": "angular-postman-ui"
 }
